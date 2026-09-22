@@ -1,5 +1,7 @@
 # datum-api
 
+> Part of [Atlas](https://github.com/DatumLabMHQ/atlas), Datum Labs' internal data infrastructure. Start there for how the parts fit together.
+
 Read-only HTTP API and MCP server over the Datum data platform (`DatumLabMHQ/datum-models`). One registry of
 curated tables, one list of consensus questions, served two ways so dashboards, reports and agents get the same number.
 
