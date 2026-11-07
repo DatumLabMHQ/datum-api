@@ -12,6 +12,10 @@ curated tables, one list of consensus questions, served two ways so dashboards, 
 - `POST /api/mcp` — MCP streamable HTTP with tools `list_products`, `list_questions`, `ask`, `query`, `health`
 
 Auth: when `DATUM_API_KEYS` is set, send `x-api-key: <key>` (or `Authorization: Bearer`, or `?key=`). Reads use the
-`datum_reader` role only. Deployed on the Datum Labs Vercel account.
+`datum_reader` role only. Deployed on Cloudflare Workers (Datum Labs account) at
+https://datum-api.datumlabs.workers.dev via vinext (`cloudflare.config.ts`).
 
-Claude Code: `claude mcp add --transport http datum https://<host>/api/mcp --header "x-api-key: <key>"`
+Claude Code: `claude mcp add --transport http datum https://datum-api.datumlabs.workers.dev/api/mcp --header "x-api-key: <key>"`
+
+Deploy: `npx cf auth login`, set secrets `DATABASE_URL` (Neon, `datum_reader` role) and `DATUM_API_KEYS` (comma-separated)
+with `npx cf workers secrets update <NAME> --worker datum-api`, then `npm run deploy`. Local: `npm run dev` (vite, port 3000).
